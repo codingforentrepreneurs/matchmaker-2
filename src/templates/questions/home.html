@@ -6,17 +6,22 @@
 
 
 
-{% for question in queryset %}
 
-<li>{{ question.text }}
-<ul>
-{% for ans in question.answer_set.all %}
-<li>{{ ans.text }}</li>
-{% endfor %}
-</ul>
-</li>
+<form method='POST' action='' > {% csrf_token %}
+<h1>{{ instance.text }}</h1>
+<input type='hidden' name='question_id' value='{{ instance.id }}' />
 
+
+{% for ans in instance.answer_set.all %}
+<input type='radio' name='answer_id' value='{{ ans.id }}'/> {{ ans.text }} <br/>
 {% endfor %}
+
+<input type='submit' value='Save and continue' />
+
+
+
+</form>
+
 
 
 {% endblock %}
