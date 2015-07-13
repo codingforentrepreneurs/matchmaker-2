@@ -1,5 +1,5 @@
 """
-WSGI config for trydjango18 project.
+WSGI config for matchmaker project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
