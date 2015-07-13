@@ -1,11 +1,6 @@
 from django import forms
 
-LEVELS = (
-		('Mandatory', 'Mandatory'), 
-		('Very Important', 'Very Important'),
-		('Somewhat Important', 'Somewhat Important'),
-		('Not Important','Not Important'),
-		)
+from .models import LEVELS
 
 class UserResponseForm(forms.Form):
 	question_id = forms.IntegerField()
