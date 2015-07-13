@@ -12,6 +12,8 @@ def single(request, id):
 	if request.user.is_authenticated():
 		form = UserResponseForm(request.POST or None)
 		if form.is_valid():
+			print form.cleaned_data
+			#print request.POST
 			question_id = form.cleaned_data.get('question_id') #form.cleaned_data['question_id']
 			answer_id = form.cleaned_data.get('answer_id')
 			question_instance = Question.objects.get(id=question_id)
@@ -28,7 +30,7 @@ def single(request, id):
 			"instance": instance,
 			#"queryset": queryset
 		}
-		return render(request, "questions/home.html", context)
+		return render(request, "questions/single.html", context)
 	else:
 		raise Http404
 
