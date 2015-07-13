@@ -22,13 +22,13 @@ Importance: {{ form.importance_level }}
 
 <h3>Your coworker's ideal answer</h3>
 {% for ans in instance.answer_set.all %}
-<input type='radio' name='coworker_answer_id' value='{{ ans.id }}'/> {{ ans.text }} <br/>
+<input type='radio' name='their_answer_id' value='{{ ans.id }}'/> {{ ans.text }} <br/>
 {% endfor %}
-<input type='radio' name='coworker_answer_id' value='-1'/> Holds no importance <br/>
+<input type='radio' name='their_answer_id' value='-1'/> Holds no importance <br/>
 
 
 <br/>
-Importance: {{ form.coworker_importance_level }} <br/><br/>
+Importance: {{ form.their_importance_level }} <br/><br/>
 
 
 <input type='submit' value='Save and continue' />
