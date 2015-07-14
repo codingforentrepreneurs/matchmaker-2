@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
-
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
 # Create your models here.
 
 class Question(models.Model):
@@ -63,9 +64,44 @@ def score_importance(importance_level):
 		points = 0
 	else:
 		points = 0
+	return points
 
 
 
+@receiver(pre_save, sender=UserAnswer)
+def update_user_answer_score(sender, instance, *args, **kwargs):
+	my_points = score_importance(instance.my_answer_importance)
+	instance.my_points = my_points
+	their_points = score_importance(instance.their_importance)
+	instance.their_points = their_points
+
+
+#pre_save.connect(update_user_answer_score, sender=UserAnswer)
+
+
+
+# def update_user_answer_score(sender, instance, created, *args, **kwargs):
+# 	my_points = score_importance(instance.my_answer_importance)
+# 	instance.my_points = my_points
+# 	their_points = score_importance(instance.their_importance)
+# 	instance.their_points = their_points
+# 	instance.save() ## don't save like this
+# 	# print sender
+# 	# print instance
+# 	# print created
+# 	# if created:
+# 	# 	if instance.my_points == -1:
+# 	# 		my_points = score_importance(instance.my_answer_importance)
+# 	# 		instance.my_points = my_points
+# 	# 		instance.save()
+
+# 	# 	if instance.their_points == -1:
+# 	# 		their_points = score_importance(instance.their_importance)
+# 	# 		instance.their_points = their_points
+# 	# 		instance.save()
+
+
+# post_save.connect(update_user_answer_score, sender=UserAnswer)
 
 
 
