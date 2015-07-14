@@ -40,8 +40,10 @@ class UserAnswer(models.Model):
 	question = models.ForeignKey(Question)  
 	my_answer = models.ForeignKey(Answer, related_name='user_answer')
 	my_answer_importance = models.CharField(max_length=50, choices=LEVELS)
+	my_points = models.IntegerField(default=-1)
 	their_answer = models.ForeignKey(Answer, null=True, blank=True, related_name='match_answer')
 	their_importance = models.CharField(max_length=50, choices=LEVELS)
+	their_points = models.IntegerField(default=-1)
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
 
@@ -50,7 +52,17 @@ class UserAnswer(models.Model):
 
 
 
-
+def score_importance(importance_level):
+	if importance_level == "Mandatory":
+		points = 300
+	elif importance_level == "Very Important":
+		points = 200
+	elif importance_level == "Somewhat Important":
+		points = 50
+	elif importance_level == "Not Important":
+		points = 0
+	else:
+		points = 0
 
 
 
