@@ -72,3 +72,39 @@ get_match(khaleesi, userc)
 
 
 
+
+def get_points(user_a, user_b):
+	a_answers = UserAnswer.objects.filter(user=user_a)[0]
+	b_answers = UserAnswer.objects.filter(user=user_b)[0]
+	a_total_awarded = 0
+	a_points_possible = 0
+	if a_answers.question.id == b_answers.question.id:
+		a_pref = a_answers.their_answer
+		b_answer = b_answers.my_answer
+		if a_pref == b_answer:
+			'''
+			awards points for correct answer
+			'''
+			a_total_awarded += a_answers.their_points
+		'''
+		assiging total points
+		'''
+		a_points_possible += a_answers.their_points
+	print "%s has awarded %s points of %s to %s" %(user_a, a_total_awarded, a_points_possible, user_b)
+
+
+
+
+# get_points(jmitchel3, khaleesi)
+# get_points(jmitchel3, userc)
+get_points(khaleesi, userc)
+get_points(userc, khaleesi)
+
+
+
+
+
+
+
+
+
