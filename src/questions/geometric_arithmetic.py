@@ -1,6 +1,6 @@
 """
 
-Geometric vs Arthimetic
+Geometric vs Arithmetic
 
 
 Apple
@@ -25,7 +25,7 @@ Actual:
 $ 109,270,125.00
 
 
-Arthimetic
+Arithmetic
 (.025 + .030 + .035) / 3.0 = 3.0% = .030
 
 100000000 * 1.03 * 1.03  * 1.03
