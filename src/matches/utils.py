@@ -4,15 +4,15 @@ from django.contrib.auth import get_user_model
 from questions.models import UserAnswer
 
 
-User = get_user_model()
+# User = get_user_model()
 
-users = User.objects.all() #[user1, user2,]
-all_user_answers = UserAnswer.objects.all().order_by("user__id") #[useranswer1, useranswer2,]
+# users = User.objects.all() #[user1, user2,]
+# all_user_answers = UserAnswer.objects.all().order_by("user__id") #[useranswer1, useranswer2,]
 
 
-jmitchel3 = users[0]
-khaleesi = users[1]
-userc = users[2]
+# jmitchel3 = users[0]
+# khaleesi = users[1]
+# userc = users[2]
 
 def get_points(user_a, user_b):
 	a_answers = UserAnswer.objects.filter(user=user_a)
@@ -44,14 +44,14 @@ def get_points(user_a, user_b):
 
 
 
-get_points(jmitchel3, khaleesi)
-# get_points(jmitchel3, userc)
-a = get_points(khaleesi, jmitchel3)
-b = get_points(jmitchel3, khaleesi)
+# get_points(jmitchel3, khaleesi)
+# # get_points(jmitchel3, userc)
+# a = get_points(khaleesi, jmitchel3)
+# b = get_points(jmitchel3, khaleesi)
 
 
-match_percentage = "%.2f" % ((Decimal(a[0]) * Decimal(b[0])) ** (1/Decimal(b[1])))
-print match_percentage
+# match_percentage = "%.2f" % ((Decimal(a[0]) * Decimal(b[0])) ** (1/Decimal(b[1])))
+# print match_percentage
 
 
 
