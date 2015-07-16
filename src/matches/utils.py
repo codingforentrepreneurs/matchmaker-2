@@ -53,6 +53,24 @@ def get_points(user_a, user_b):
 # match_percentage = "%.2f" % ((Decimal(a[0]) * Decimal(b[0])) ** (1/Decimal(b[1])))
 # print match_percentage
 
+def get_match(user_a, user_b):
+	a = get_points(user_a, user_b)
+	b = get_points(user_b, user_a)
+	#a[0] = decimal match value 
+	number_of_questions = b[1] #b[1]/a[1] = number of questions answered
+	match_decimal = (Decimal(a[0]) * Decimal(b[0])) ** (1/Decimal(number_of_questions)) #geometric mean in respects to number of questions answered
+	return match_decimal, number_of_questions
+
+
+
+
+
+
+
+
+
+
+
 
 
 
