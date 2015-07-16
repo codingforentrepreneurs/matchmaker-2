@@ -1,7 +1,7 @@
 from decimal import Decimal
 from django.contrib.auth import get_user_model
-
-from questions.models import UserAnswer
+from django.db.models import Q
+from questions.models import UserAnswer, Question
 
 
 # User = get_user_model()
@@ -13,6 +13,27 @@ from questions.models import UserAnswer
 # jmitchel3 = users[0]
 # khaleesi = users[1]
 # userc = users[2]
+
+
+def get_points_2(user_a, user_b):
+	q1 = Q(useranswer__user=a)
+	q2 = Q(useranswer__user=b)
+	question_set = Question.objects.filter(q1 | q2).distinct()
+	for question in question_set:
+		try:
+			a_answer = UserAnswer.objects.get(user=user_a, question=question)
+		except:
+			a_answer = None
+		try:
+			b_answer = UserAnswer.objects.get(user=user_b, question=question)
+		except:
+			b_answer = None
+		if a_answer and b_answer:
+			print("something")
+
+
+
+
 
 def get_points(user_a, user_b):
 	a_answers = UserAnswer.objects.filter(user=user_a)
