@@ -5,7 +5,7 @@
 
 
 <h3>{{ profile.user }}</h3>
-<p class='lead'>Match: {{ match.match_decimal }} </p>
+<p class='lead'>Match: {{ match.get_percent }} </p>
 
 {% if profile.picture %}
 <img src='{{ profile.picture.url }}' />
