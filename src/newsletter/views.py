@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render
 
+
+from matches.models import Match
 from questions.models import Question
 
 from .forms import ContactForm, SignUpForm
@@ -15,6 +17,9 @@ def home(request):
 		"title": title,
 		"form": form
 	}
+
+
+
 	if form.is_valid():
 		instance = form.save(commit=False)
 
@@ -28,9 +33,23 @@ def home(request):
 		}
 
 	if request.user.is_authenticated():
+		matches = []
+		match_set = Match.objects.matches_all(request.user).order_by('-match_decimal')
+		for match in match_set:
+			if match.user_a == request.user and match.user_b != request.user:
+				items_wanted = [match.user_b, match.get_percent]
+				matches.append(items_wanted)
+			elif match.user_b == request.user and match.user_a != request.user:
+				items_wanted = [match.user_a, match.get_percent]
+				matches.append(items_wanted)
+			else:
+				pass
+
+
 		queryset = Question.objects.all().order_by('-timestamp') 
 		context = {
-			"queryset": queryset
+			"queryset": queryset,
+			"matches": matches
 		}
 		return render(request, "questions/home.html", context)
 

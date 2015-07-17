@@ -8,7 +8,23 @@ from django.utils import timezone
 # Create your models here.
 from .utils import get_match
 
+
+class MatchQuerySet(models.query.QuerySet):
+	def all(self):
+		return self.filter(active=True)
+
+	def matches(self, user):
+		q1 = self.filter(user_a = user)
+		q2 = self.filter(user_b = user)
+		return (q1 | q2).distinct()
+
+
+
 class MatchManager(models.Manager):
+	def get_queryset(self):
+		return MatchQuerySet(self.model, using=self._db)
+
+
 	def get_or_create_match(self, user_a=None, user_b=None):
 		try:
 			obj = self.get(user_a=user_a, user_b=user_b)
@@ -39,6 +55,8 @@ class MatchManager(models.Manager):
 			for i in queryset:
 				i.check_update()
 			
+	def matches_all(self, user):
+		return self.get_queryset().matches(user)
 
 
 class Match(models.Model):
