@@ -91,7 +91,7 @@ class Match(models.Model):
 	def check_update(self):
 		now = timezone.now()
 		offset = now - datetime.timedelta(hours=12)  # 12 hours ago
-		if self.updated <= offset:
+		if self.updated <= offset or self.match_decimal == 0.0:
 			self.do_match()
 		else:
 			print("already updated")

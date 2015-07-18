@@ -7,7 +7,14 @@ from questions.models import UserAnswer, Question
 def get_match(user_a, user_b):
 	q1 = Q(useranswer__user=user_a)
 	q2 = Q(useranswer__user=user_b)
-	question_set = Question.objects.filter(q1 | q2).distinct()
+	#question_set = Question.objects.filter(q1 | q2).distinct()
+	question_set1 = Question.objects.filter(q1)
+	question_set2 = Question.objects.filter(q2)
+	if question_set1.count() == 0:
+		return 0.0, 0
+	if question_set2.count() == 0:
+		return 0.0, 0
+	question_set = (question_set1 | question_set2).distinct()
 	a_points = 0
 	b_points = 0  
 	a_total_points = 0
