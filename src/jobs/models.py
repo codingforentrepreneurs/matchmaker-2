@@ -6,9 +6,9 @@ from localflavor.us.models import USStateField
 User = settings.AUTH_USER_MODEL
 
 class Job(models.Model):
-	text = models.CharField(max_length=120)
+	text = models.CharField(max_length=120, unique=True)
 	active = models.BooleanField(default=True) #shown
-	flagged = models.ManyToManyField(User, null=True, blank=True) #warning
+	flagged = models.ManyToManyField(User, blank=True) #warning
 	#users = modeles.ManyToManyField(User, null=True, blank=True)
 
 	def __unicode__(self):
@@ -18,9 +18,9 @@ class Job(models.Model):
 
 
 class Location(models.Model):
-	name = models.CharField(max_length=250)
+	name = models.CharField(max_length=250, unique=True)
 	active = models.BooleanField(default=True) #shown
-	flagged = models.ManyToManyField(User, null=True, blank=True) 
+	flagged = models.ManyToManyField(User, blank=True) 
  
 	def __unicode__(self): #__str__(self):
 		return self.name
@@ -29,8 +29,9 @@ class Location(models.Model):
 
 
 class Employer(models.Model):
-	name =  models.CharField(max_length=250)
-	location = models.ForeignKey(Location, null=True, blank=True)
+	name =  models.CharField(max_length=250, unique=True)
+	location = models.ForeignKey(Location, null=True, blank=True) # is _city
+	#city = mode
 	#state = USStateField(null=True, blank=True)
 	#website
 	#lat_lang
