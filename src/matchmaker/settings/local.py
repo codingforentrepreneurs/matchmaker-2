@@ -55,8 +55,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     #third party apps
     'crispy_forms',
+    'localflavor',
     'registration',
     #my apps
+    'jobs',
     'matches',
     'newsletter',
     'profiles',
