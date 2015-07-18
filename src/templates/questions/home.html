@@ -1,13 +1,43 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 
 
 {% block content %}
 
+<div class='row'>
+<div class='col-sm-8'>
+<h1>Dashboard</h1>
 
-{{ matches }}
+</div>
 
-<form method='POST' action='' > {% csrf_token %}
+
+
+<div class='col-sm-4'>
+<h3>Matches</h3>
+{% for match_user, percent in  matches %}
+<div class='col-sm-4'>
+{{ match_user }}
+
+{% if match_user.profile.picture %}
+<img src='{{ match_user.profile.picture.url }}' class='img-responsive' />
+ {% else %}
+
+<img src='{% static "img/profile_default.jpg" %}' class='img-responsive' />
+
+{% endif %}
+
+
+{{ percent }}
+</div>
+{% endfor %}
+
+</div>
+
+
+
+
+</div>
+<!-- <form method='POST' action='' > {% csrf_token %}
 <h1>{{ instance.text }}</h1>
 <input type='hidden' name='question_id' value='{{ instance.id }}' />
 
@@ -20,7 +50,7 @@
 
 
 
-</form>
+</form> -->
 
 
 
