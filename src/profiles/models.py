@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 
 # Create your models here.
@@ -20,3 +21,9 @@ class Profile(models.Model):
 
 	def __unicode__(self): #__str__(self):
 		return self.user.username
+
+
+	def get_absolute_url(self):
+		#url = reverse("question_single", kwargs={"id": self.id})
+		url = reverse("profile", kwargs={"username": self.user.username})
+		return url

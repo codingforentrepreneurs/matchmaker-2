@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
 
 
 {% block content %}
@@ -7,8 +9,14 @@
 <h3>{{ profile.user }}</h3>
 <p class='lead'>Match: {{ match.get_percent }} </p>
 
+<div class='col-sm-2'>
 {% if profile.picture %}
-<img src='{{ profile.picture.url }}' />
+<img src='{{ profile.picture.url }}' class='img-responsive'/>
+{% else %}
+
+<img src='{% static "img/profile_default.jpg" %}' class='img-responsive' />
+
 {% endif %}
+</div>
 
 {% endblock %}
