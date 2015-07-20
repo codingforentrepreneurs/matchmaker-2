@@ -133,7 +133,7 @@ class JobMatch(models.Model):
 	user = models.ForeignKey(User)
 	job = models.ForeignKey(Job)
 	hidden = models.BooleanField(default=False)
-	liked = models.BooleanField()
+	liked = models.NullBooleanField()
 
 	def __unicode__(self): #__str__(self):
 		return self.user.username
@@ -144,7 +144,7 @@ class EmployerMatch(models.Model):
 	user = models.ForeignKey(User)
 	employer = models.ForeignKey(Employer)
 	hidden = models.BooleanField(default=False)
-	liked = models.BooleanField()
+	liked = models.NullBooleanField()
 
 	def __unicode__(self): #__str__(self):
 		return self.user.username
@@ -155,7 +155,7 @@ class LocationMatch(models.Model):
 	user = models.ForeignKey(User)
 	location = models.ForeignKey(Location)
 	hidden = models.BooleanField(default=False)
-	liked = models.BooleanField()
+	liked = models.NullBooleanField()
 
 
 	def __unicode__(self): #__str__(self):
