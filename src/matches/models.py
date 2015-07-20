@@ -14,8 +14,8 @@ class MatchQuerySet(models.query.QuerySet):
 		return self.filter(active=True)
 
 	def matches(self, user):
-		q1 = self.filter(user_a = user)
-		q2 = self.filter(user_b = user)
+		q1 = self.filter(user_a = user).exclude(user_b=user)
+		q2 = self.filter(user_b = user).exclude(user_a=user)
 		return (q1 | q2).distinct()
 
 
@@ -54,9 +54,36 @@ class MatchManager(models.Manager):
 		if queryset.count > 0:
 			for i in queryset:
 				i.check_update()
-			
-	def matches_all(self, user):
-		return self.get_queryset().matches(user)
+
+	def get_matches(self,user):
+		qs = self.get_queryset().matches(user).order_by('-match_decimal')
+		matches = []
+		for match in qs:
+			if match.user_a == user:
+				items_wanted = [match.user_b]
+				matches.append(items_wanted)
+			elif match.user_b == user:
+				items_wanted = [match.user_a]
+				matches.append(items_wanted)
+			else:
+				pass
+		return matches
+
+	def get_matches_with_percent(self, user):
+		qs = self.get_queryset().matches(user).order_by('-match_decimal')
+		matches = []
+		for match in qs:
+			if match.user_a == user:
+				items_wanted = [match.user_b, match.get_percent]
+				matches.append(items_wanted)
+			elif match.user_b == user:
+				items_wanted = [match.user_a, match.get_percent]
+				matches.append(items_wanted)
+			else:
+				pass
+		return matches
+
+
 
 
 class Match(models.Model):

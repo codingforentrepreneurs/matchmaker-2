@@ -33,23 +33,11 @@ def home(request):
 		}
 
 	if request.user.is_authenticated():
-		matches = []
-		match_set = Match.objects.matches_all(request.user).order_by('-match_decimal')
-		for match in match_set:
-			if match.user_a == request.user and match.user_b != request.user:
-				items_wanted = [match.user_b, match.get_percent]
-				matches.append(items_wanted)
-			elif match.user_b == request.user and match.user_a != request.user:
-				items_wanted = [match.user_a, match.get_percent]
-				matches.append(items_wanted)
-			else:
-				pass
-
-
+		matches = Match.objects.get_matches_with_percent(request.user)[:6]
 		queryset = Question.objects.all().order_by('-timestamp') 
 		context = {
 			"queryset": queryset,
-			"matches": matches[:6]
+			"matches": matches
 		}
 		return render(request, "questions/home.html", context)
 
