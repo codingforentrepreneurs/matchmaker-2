@@ -29,7 +29,7 @@ class Location(models.Model):
 
 
 class Employer(models.Model):
-	name =  models.CharField(max_length=250, unique=True)
+	name =  models.CharField(max_length=250)
 	location = models.ForeignKey(Location, null=True, blank=True) # is _city
 	#city = mode
 	#state = USStateField(null=True, blank=True)

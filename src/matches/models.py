@@ -5,9 +5,12 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-# Create your models here.
+from jobs.models import Job, Employer, Location
+
 from .utils import get_match
 
+
+User = settings.AUTH_USER_MODEL
 
 class MatchQuerySet(models.query.QuerySet):
 	def all(self):
@@ -125,19 +128,46 @@ class Match(models.Model):
 
 
 
-'''
-Match.abc.get_or_create_match()
-Match.objects.get_or_create_match()
+
+class JobMatch(models.Model):
+	user = models.ForeignKey(User)
+	job = models.ForeignKey(Job)
+	hidden = models.BooleanField(default=False)
+	liked = models.BooleanField()
+
+	def __unicode__(self): #__str__(self):
+		return self.user.username
 
 
-Match.objects.all()
-Match.objects.get(user_a=some_user)
-instance, created = Match.objects.get_or_create(user_a=some_user)
-new_instance = Match.objects.create(user_a=some_user)
+
+class EmployerMatch(models.Model):
+	user = models.ForeignKey(User)
+	employer = models.ForeignKey(Employer)
+	hidden = models.BooleanField(default=False)
+	liked = models.BooleanField()
+
+	def __unicode__(self): #__str__(self):
+		return self.user.username
 
 
-new_instance = Match()
-new_instance.user_a = some_user
-new_instance.save()
 
-'''
+class LocationMatch(models.Model):
+	user = models.ForeignKey(User)
+	location = models.ForeignKey(Location)
+	hidden = models.BooleanField(default=False)
+	liked = models.BooleanField()
+
+
+	def __unicode__(self): #__str__(self):
+		return self.user.username
+
+
+
+
+
+
+
+
+
+
+
