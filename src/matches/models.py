@@ -2,7 +2,9 @@ import datetime
 from decimal import Decimal
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
+
 from django.utils import timezone
 
 from jobs.models import Job, Employer, Location
@@ -172,7 +174,10 @@ class PositionMatch(models.Model):
 		offset = now - datetime.timedelta(seconds=12)  # 12 hours ago
 		if self.updated <= offset:
 			PositionMatch.objects.update_top_suggestions(self.user, match_int) 
-
+	
+	@property
+	def get_match_url(self):
+		return reverse("job_match_view_url", kwargs={"slug": self.job.slug })
 
 
 
@@ -186,6 +191,10 @@ class EmployerMatch(models.Model):
 	def __unicode__(self): #__str__(self):
 		return self.user.username
 
+	@property
+	def get_match_url(self):
+		return reverse("employer_match_view_url", kwargs={"slug": self.employer.slug })
+
 
 
 class LocationMatch(models.Model):
@@ -198,7 +207,9 @@ class LocationMatch(models.Model):
 	def __unicode__(self): #__str__(self):
 		return self.user.username
 
-
+	@property
+	def get_match_url(self):
+		return reverse("location_match_view_url", kwargs={"slug": self.location.slug })
 
 
 
