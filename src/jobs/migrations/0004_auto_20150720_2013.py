@@ -12,11 +12,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='employer',
-            name='name',
-            field=models.CharField(unique=True, max_length=250),
-        ),
-        migrations.AlterField(
             model_name='job',
             name='text',
             field=models.CharField(unique=True, max_length=120),
