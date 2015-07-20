@@ -64,7 +64,7 @@
 </div>
 {% for pos in  locations %}
 <div class='col-sm-4 text-center'>
-<p class='lead'>{{ pos }}</p>
+<p class='lead'>{{ pos.location.name }}</p>
 </div>
 {% endfor %}
 
@@ -76,7 +76,7 @@
 </div>
 {% for pos in  employers %}
 <div class='col-sm-4 text-center'>
-<p class='lead'>{{ pos }}</p>
+<p class='lead'>{{ pos.employer.name }}</p>
 </div>
 {% endfor %}
 

@@ -3,6 +3,6 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import JobMatch
+from .models import PositionMatch
 
-admin.site.register(JobMatch)
+admin.site.register(PositionMatch)
