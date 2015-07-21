@@ -20,6 +20,16 @@
 </div>
 
 
+{% if mutual_like %}
+<p class='lead'>
+You are connected! 
+</p>
+<p>
+Email: {{ profile.user.email }}
+</p>
+
+{% endif %}
+
 {% if jobs %} 
 <div class='row'>
 <ul>

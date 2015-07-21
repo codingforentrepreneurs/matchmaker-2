@@ -58,7 +58,9 @@ INSTALLED_APPS = (
     'localflavor',
     'registration',
     #my apps
+
     'jobs',
+    'likes',
     'matches',
     'newsletter',
     'profiles',

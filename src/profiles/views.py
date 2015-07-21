@@ -8,6 +8,7 @@ from django.shortcuts import render, get_object_or_404
 
 User = get_user_model()
 
+from likes.models import UserLike
 from matches.models import Match
 from .forms import UserJobForm
 from .models import Profile, UserJob
@@ -16,12 +17,16 @@ from .models import Profile, UserJob
 def profile_view(request, username):
 	user = get_object_or_404(User, username=username)
 	profile, created = Profile.objects.get_or_create(user=user)
+	user_like, user_like_created = UserLike.objects.get_or_create(user=request.user)
+	mutual_like = user_like.get_mutual_like(user)
+	print UserLike.objects.get_all_mutual_likes(request.user)
 	match, match_created = Match.objects.get_or_create_match(user_a=request.user, user_b=user)
 	jobs = user.userjob_set.all()
 	context = {
 		"profile": profile,
 		"match": match,
 		"jobs": jobs,
+		"mutual_like": mutual_like,
 				}
 	return render(request, "profiles/profile_view.html", context)
 
