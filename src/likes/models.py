@@ -22,11 +22,11 @@ class UserLikeManager(models.Manager):
 
 class UserLike(models.Model):
 	user = models.OneToOneField(User, related_name='liker')
-	liked_users = models.ManyToManyField(User, related_name='liked_users')
+	liked_users = models.ManyToManyField(User, related_name='liked_users', blank=True)
 
 	objects = UserLikeManager()
 
-	
+
 	def __unicode__(self):
 		return self.user.username
 
