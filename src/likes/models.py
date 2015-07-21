@@ -8,7 +8,7 @@ User = settings.AUTH_USER_MODEL
 
 class UserLikeManager(models.Manager):
 	def get_all_mutual_likes(self, user):
-		qs = user.liker.liked_users.all()
+		qs = user.liker.liked_users.all().order_by("?")
 		mutual_users = []
 		for other_user in qs:
 			try:
