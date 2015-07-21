@@ -107,3 +107,11 @@ The tutorial code below is the final code from the end of each tutorial video. E
 
 [51 - SlugFields](../../tree/684ce82efb139dbe7279bc93ec7fdbd264fb494c)
 
+[52 - Position Match View](../../tree/192e804fd3edf47a3506a35db62f06f0c04fdf2f)
+
+[53 - Handle Query Exceptions](../../tree/bdf62696769e0c562574842b822082a64e7ebf2f)
+
+[54 - Location & Employer Match Views](../../tree/f12d1f4ede2e76653f7c476a0ec369cb2354f506)
+
+[55 - User Logged in Signal](../../tree/c66ce33dbc992552e40cb479b3a814a96f9e59bf)
+
