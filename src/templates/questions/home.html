@@ -64,7 +64,7 @@
 </div>
 {% for pos in  locations %}
 <div class='col-sm-4 text-center'>
-<p class='lead'>{{ pos.location.name }}</p>
+<p class='lead'><a href="{{ pos.get_match_url }}">{{ pos.location.name }}</a></p>
 </div>
 {% endfor %}
 
@@ -76,7 +76,7 @@
 </div>
 {% for pos in  employers %}
 <div class='col-sm-4 text-center'>
-<p class='lead'>{{ pos.employer.name }}</p>
+<p class='lead'><a href="{{ pos.get_match_url }}">{{ pos.employer.name }}</a></p>
 </div>
 {% endfor %}
 

@@ -29,7 +29,6 @@ class MatchManager(models.Manager):
 	def get_queryset(self):
 		return MatchQuerySet(self.model, using=self._db)
 
-
 	def get_or_create_match(self, user_a=None, user_b=None):
 		try:
 			obj = self.get(user_a=user_a, user_b=user_b)

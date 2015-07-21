@@ -39,7 +39,7 @@ def home(request):
 		matches = Match.objects.get_matches_with_percent(request.user)[:6]
 		positions = PositionMatch.objects.filter(user=request.user)[:6]
 
-		if positions.count > 0:
+		if positions.count() > 0:
 			positions[0].check_update(20) #20 matches total
 		locations = LocationMatch.objects.filter(user=request.user)[:6]
 		employers = EmployerMatch.objects.filter(user=request.user)[:6]
