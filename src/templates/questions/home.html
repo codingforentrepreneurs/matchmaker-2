@@ -53,7 +53,7 @@
 </div>
 {% for pos in  positions %}
 <div class='col-sm-4 text-center'>
-<p class='lead'>{{ pos }}</p>
+<p class='lead'><a href="{{ pos.get_match_url }}">{{ pos.job.text }}</a></p>
 </div>
 {% endfor %}
 

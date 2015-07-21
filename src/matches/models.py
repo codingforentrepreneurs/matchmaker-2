@@ -177,7 +177,7 @@ class PositionMatch(models.Model):
 	
 	@property
 	def get_match_url(self):
-		return reverse("job_match_view_url", kwargs={"slug": self.job.slug })
+		return reverse("position_match_view_url", kwargs={"slug": self.job.slug })
 
 
 
