@@ -13,6 +13,11 @@
 
 {% block content %}
 
+{% if new_user %}
+
+<h1>Welcome New User</h1>
+
+{% else %}
 <div class='row'>
 <div class='col-sm-8'>
 <h1>Dashboard</h1>
@@ -117,6 +122,6 @@
 
 
 
-
+{% endif %}
 
 {% endblock %}

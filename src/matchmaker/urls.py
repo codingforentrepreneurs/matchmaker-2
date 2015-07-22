@@ -6,7 +6,7 @@ from django.contrib import admin
 
 urlpatterns = [
     # Examples:
-    url(r'^$', 'newsletter.views.home', name='home'),
+    url(r'^$', 'dashboard.views.home', name='home'),
     url(r'^question/(?P<id>\d+)/$', 'questions.views.single', name='question_single'),
     url(r'^question/$', 'questions.views.home', name='question_home'),
     url(r'^contact/$', 'newsletter.views.contact', name='contact'),
