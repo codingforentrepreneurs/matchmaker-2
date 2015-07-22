@@ -13,21 +13,30 @@
 
 {% block content %}
 
-{% include "questions/user_response_form.html" with instance=question_instance form=question_form %}
+
 
 {% if new_user %}
 
-<h1>Welcome New User</h1>
+<div class='row'>
+<div class='col-sm-12'>
+{% include "questions/user_response_form.html" with instance=question_instance form=question_form center_text=True %}	
+</div>
+</div>
 
-
-
-
-
+<div class='row'>
+<div class='col-sm-12'>
+<hr/>
+<p class='lead text-center'>
+Answer more questions to get matches and be able to connect with other users.
+</p>
+</div>
+</div>
 
 {% else %}
 <div class='row'>
 <div class='col-sm-8'>
-<h1>Dashboard</h1>
+
+{% include "questions/user_response_form.html" with instance=question_instance form=question_form center_text=True %}	
 
 
 {% if mutual_likes %}

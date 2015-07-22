@@ -22,7 +22,6 @@ def profile_view(request, username):
 	if user in user_like.liked_users.all():
 		do_i_like = True
 	mutual_like = user_like.get_mutual_like(user)
-	print UserLike.objects.get_all_mutual_likes(request.user)
 	match, match_created = Match.objects.get_or_create_match(user_a=request.user, user_b=user)
 	jobs = user.userjob_set.all()
 	context = {

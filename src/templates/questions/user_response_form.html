@@ -1,10 +1,19 @@
+<div class='{% if center_text %}text-center{% endif %}'>
 <form method='POST' action='{% url "question_single" id=instance.id %}'> {% csrf_token %}
 {{ form.errors }}
+{% if title_size %}
+<h{{ title_size }}>{{ instance.text }}</h{{ title_size }}>
+{% else %}
 <h1>{{ instance.text }}</h1>
+{% endif %}
 
 <input type='hidden' name='question_id' value='{{ instance.id }}' />
 
+{% if title_size %}
+<h{{ title_size|add:1 }}>Your Answer</h{{ title_size|add:1 }}>
+{% else %}
 <h3>Your answer</h3>
+{% endif %}
 {% for ans in instance.answer_set.all %}
 <input type='radio' name='answer_id' value='{{ ans.id }}' {% if user_answer.my_answer.id == ans.id %}checked=checked{% endif %} /> {{ ans.text }} <br/>
 {% endfor %}
@@ -12,7 +21,12 @@
 <br/>
 Importance: {{ form.importance_level }}
 
-<h3>Your coworker's ideal answer</h3>
+
+{% if title_size %}
+<h{{ title_size|add:1 }}>Their Answer</h{{ title_size|add:1 }}>
+{% else %}
+<h3>Their Answer</h3>
+{% endif %}
 {% for ans in instance.answer_set.all %}
 <input type='radio' name='their_answer_id' value='{{ ans.id }}' {% if user_answer.their_answer.id == ans.id %}checked=checked{% endif %} /> {{ ans.text }} <br/>
 {% endfor %}
@@ -23,8 +37,10 @@ Importance: {{ form.importance_level }}
 Importance: {{ form.their_importance_level }} <br/><br/>
 
 
-<input type='submit' value='Save and continue' />
+<input class='btn btn-primary' type='submit' value='Save and continue' />
 
 
 
 </form>
+
+</div>
