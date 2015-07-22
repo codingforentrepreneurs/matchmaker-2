@@ -13,9 +13,16 @@
 
 {% block content %}
 
+{% include "questions/user_response_form.html" with instance=question_instance form=question_form %}
+
 {% if new_user %}
 
 <h1>Welcome New User</h1>
+
+
+
+
+
 
 {% else %}
 <div class='row'>

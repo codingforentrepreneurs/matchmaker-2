@@ -6,6 +6,8 @@ from django.shortcuts import render
 from jobs.models import Job, Employer, Location
 from likes.models import UserLike
 from matches.models import Match, PositionMatch, EmployerMatch, LocationMatch
+
+from questions.forms import UserResponseForm
 from questions.models import Question
 
 from newsletter.forms import ContactForm, SignUpForm
@@ -30,6 +32,10 @@ def home(request):
 			new_user = True
 
 		queryset = Question.objects.all().order_by('-timestamp') 
+		if queryset.count() > 0:
+			question_instance = queryset.order_by("?").first()
+
+		question_form = UserResponseForm()
 		context = {
 			"queryset": queryset,
 			"matches": matches,
@@ -37,7 +43,10 @@ def home(request):
 			"locations": locations,
 			"employers": employers,
 			"mutual_likes": mutual_likes,
-			"new_user": new_user
+			"new_user": new_user,
+			"question_form": question_form,
+			"question_instance": question_instance,
+
 		}
 		return render(request, "dashboard/home.html", context)
 
