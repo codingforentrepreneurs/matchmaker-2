@@ -115,3 +115,10 @@ The tutorial code below is the final code from the end of each tutorial video. E
 
 [55 - User Logged in Signal](../../tree/c66ce33dbc992552e40cb479b3a814a96f9e59bf)
 
+[56 - UserLike](../../tree/1b58db5fb2c6d108eca022e85bcb8688e4e03a05)
+
+[57 - Perform Like in a View](../../tree/29822dab7bc7f4cfaf7c48431cf486b1e62334cd)
+
+[58 - User Likes on Dashboard](../../tree/e9f8fe831bdfeb9e9e0941ce1223b9a9aa91cd53)
+
+
