@@ -19,7 +19,19 @@
 
 <div class='row'>
 <div class='col-sm-12'>
+
+{% if question_instance %}
+
 {% include "questions/user_response_form.html" with instance=question_instance form=question_form center_text=True %}	
+
+{% else %}
+
+<p class='lead text-center'>
+You have already answered all questions. Check back for more later.
+</p> 
+
+{% endif %}
+
 </div>
 </div>
 
@@ -36,8 +48,17 @@ Answer more questions to get matches and be able to connect with other users.
 <div class='row'>
 <div class='col-sm-8'>
 
+{% if question_instance %}
+
 {% include "questions/user_response_form.html" with instance=question_instance form=question_form center_text=True %}	
 
+{% else %}
+
+<p class='lead text-center'>
+You have already answered all questions. Check back for more later.
+</p> 
+
+{% endif %}
 
 {% if mutual_likes %}
 

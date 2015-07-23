@@ -31,7 +31,8 @@ def home(request):
 		if len(mutual_likes) == 0 or len(matches) == 0:
 			new_user = True
 
-		queryset = Question.objects.all().order_by('-timestamp') 
+		question_instance = None
+		queryset = Question.objects.get_unanswered(request.user).order_by('-timestamp') 
 		if queryset.count() > 0:
 			question_instance = queryset.order_by("?").first()
 
