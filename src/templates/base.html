@@ -16,7 +16,12 @@
     {% include 'head_css.html' %}
 
       <style>
+      .alert-top-message {
+        margin-top: -19px;
+      }
       {% block style %}{% endblock %}
+
+
       </style>
 
 
@@ -26,11 +31,13 @@
   <body>
   {% include 'navbar.html' %}
   {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ messages.tags }}"{% endif %}>{{ message }}</li>
+  <div class='alert alert-success alert-top-message'>
+  <div class='container text-center'>
+     {% for message in messages %}
+    {% if "safe" in message.tags %}{{ message|safe }}{% else %}{{ message }} {% endif %}<br/>
     {% endfor %}
-</ul>
+  </div>
+  </div>
 {% endif %}
 
 

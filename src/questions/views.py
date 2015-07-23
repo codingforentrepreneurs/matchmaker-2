@@ -60,7 +60,8 @@ def single(request, id):
 			user_answer.save()
 
 			if updated_q:
-				messages.success(request, "Your response was updated successfully.", extra_tags='updated')
+				messages.success(request, "Your response was updated successfully.<br/><a href='#'>Hello</a>", extra_tags='safe updated')
+
 			else:
 				messages.success(request, "Your response was saved successfully.")
 
