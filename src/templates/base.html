@@ -25,6 +25,15 @@
 
   <body>
   {% include 'navbar.html' %}
+  {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ messages.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
 
 {% block jumbotron %}
           
