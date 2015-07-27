@@ -28,7 +28,7 @@ def home(request):
 		mutual_likes = UserLike.objects.get_all_mutual_likes(request.user, 4)
 
 		new_user = False
-		if len(mutual_likes) == 0 or len(matches) == 0:
+		if len(mutual_likes) == 0 and len(matches) == 0:
 			new_user = True
 
 		question_instance = None

@@ -141,7 +141,7 @@ class Match(models.Model):
 
 def user_matches_update_receiver(sender, user, *args, **kwargs):
 	updated = Match.objects.update_for_user(user)
-	print updated
+	update_top_suggestions = PositionMatch.objects.update_top_suggestions(user, 20)
 
 
 user_matches_update.connect(user_matches_update_receiver)
