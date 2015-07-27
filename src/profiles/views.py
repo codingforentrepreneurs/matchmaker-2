@@ -10,7 +10,7 @@ User = get_user_model()
 
 from likes.models import UserLike
 from matches.models import Match
-from .forms import UserJobForm
+from .forms import UserJobForm, ProfileForm
 from .models import Profile, UserJob
 
 
@@ -26,6 +26,23 @@ def profile_user(request):
 				}
 	return render(request, "profiles/profile_user.html", context)
 
+
+
+@login_required
+def profile_edit(request):
+	title = "Update Profile"
+	profile, created = Profile.objects.get_or_create(user=request.user)
+	form = ProfileForm(request.POST or None, request.FILES or None, instance=profile)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.user = request.user
+		instance.save()
+		return redirect("profile_user")
+	context = {
+		"form": form,
+		"title": title,
+				}
+	return render(request, "forms.html", context)
 
 
 
