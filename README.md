@@ -135,6 +135,15 @@ The tutorial code below is the final code from the end of each tutorial video. E
 
 [65 - Bootstrap Alert with Messages](../../tree/729611821e81b5ae40dcaf0cbd4710042f54c357)
 
+[66 - Custom Signals](../../tree/090a17c0af46cd92176dc9d7d572a88a0684d480)
+
+[67 - Test User](../../tree/270ab9bbbca0abaf880f76d299cda00cc75fe8f5)
+
+[68 - Profile User](../../tree/b05eb7f9449d9e9cf85f4b72a7ef4d84a99fd319)
+
+[69 - Profile Data & Image](../../tree/f53d79a17ab72b0ac4db157908c2110ad48873eb)
+
+[70 - Final Code](../../tree/e4210a41c7b11da75bcbbc610d12ebbe17b99302)
 
 
 
