@@ -9,6 +9,7 @@ from django.utils import timezone
 
 from jobs.models import Job, Employer, Location
 
+from .signals import user_matches_update
 from .utils import get_match
 
 
@@ -48,6 +49,14 @@ class MatchManager(models.Manager):
 			new_instance = self.create(user_a=user_a, user_b=user_b)
 			new_instance.do_match()
 			return new_instance, True
+
+
+	def update_for_user(self, user):
+		qs = self.get_queryset().matches(user)
+		for instance in qs:
+			instance.do_match()
+		return True
+
 
 	def update_all(self):
 		queryset = self.all()
@@ -128,6 +137,14 @@ class Match(models.Model):
 			PositionMatch.objects.update_top_suggestions(self.user_b, 6)
 		else:
 			print("already updated")
+
+
+def user_matches_update_receiver(sender, user, *args, **kwargs):
+	updated = Match.objects.update_for_user(user)
+	print updated
+
+
+user_matches_update.connect(user_matches_update_receiver)
 
 
 
