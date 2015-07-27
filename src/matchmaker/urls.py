@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^profile/(?P<username>[\w.@+-]+)/$', 'profiles.views.profile_view', name='profile'),
     url(r'^profile/jobs/add/$', 'profiles.views.job_add', name='job_add'),
     url(r'^profile/jobs/edit/$', 'profiles.views.jobs_edit', name='jobs_edit'),
+    url(r'^profile/$', 'profiles.views.profile_user', name='profile_user'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),

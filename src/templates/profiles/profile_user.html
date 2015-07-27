@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+
+{% block content %}
+
+
+<h3>{{ profile.user }}</h3>
+
+<div class='col-sm-2'>
+{% if profile.picture %}
+<img src='{{ profile.picture.url }}' class='img-responsive'/>
+{% else %}
+
+<img src='{% static "img/profile_default.jpg" %}' class='img-responsive' />
+
+{% endif %}
+</div>
+
+
+{% if jobs %} 
+<div class='row'>
+<ul>
+{% for job in jobs %}
+
+<li>{{ job.position }} in {{ job.location }} at {{ job.employer_name }}</li>
+{% endfor %}
+
+<li><a href="{% url 'jobs_edit' %}">Edit your jobs</a>.</li>
+</ul>
+
+
+</div>
+
+{% else %}
+
+<p class='lead'>
+You do not currently have jobs. <a href="{% url 'job_add' %}">Add some</a>.
+</p>
+
+{% endif %}
+
+{% endblock %}
