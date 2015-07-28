@@ -3,7 +3,7 @@
 MatchMaker 2 Tutorial Series
 =========
 
-Details Coming Soon.
+Have you ever wondered how sites like OkCupid.com and Match.com provide matches to you? How about how Amazon.com provides suggested products? In this project, we build a matchmaking site that teaches you the fundamentals of a matching algorithm so you can build the "OkCuipd" of finding and hiring staff.
 
 
 Start with:  [Try Django 1.8](https://www.youtube.com/playlist?list=PLEsfXFp6DpzRcd-q4vR5qAgOZUuz8041S) 
